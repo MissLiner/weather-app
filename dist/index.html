@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-      <meta charset="utf-8">
-      <title>title</title>
-      <script src="index.js" defer></script>
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <script src="main.js" defer></script>
   </head>
 
   <body>
-      <h1>So, what's like outside?</h1>
-      <form id="geo-form">
-        <label id="label-city" for="input-city">City:</label>
-        <input id="input-city" type="text">
-        <label id="label-state" for="input-state">State:</label>
-        <input id="input-state" type="text">
-        <p class="form-text">OR</p>
-        <label id="label-zip" for="input-zip">Zip:</label>
-        <button id="btn-submit" type="submit">Submit</button>
-      </form>
+    <h1>So, what's like outside?</h1>
+    <img id="weather-output">
+    <form id="geo-form">
+      <label id="label-city">City:<input id="city" type="text" required="true"></label>
+      <label id="label-state">State:<input id="state" type="text" required="true"></label>
+      <!-- <p class="form-text">OR</p> -->
+      <!-- <label id="label-zip">Zip:<input id="zip" type="number" min="00501" max="99999"></label> -->
+      <button id="btn-submit" type="button">Submit</button>
+    </form>
       
   </body>
 </html>
