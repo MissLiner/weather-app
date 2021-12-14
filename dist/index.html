@@ -3,18 +3,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>title</title>
+    <title>Weather App</title>
     <script src="main.js" defer></script>
   </head>
 
   <body>
     <h1>So, what's like outside?</h1>
-    <img id="weather-output">
+    <div id="weather-output"> 
+      <h2 id="location"></h2>
+      <img id="weather-icon">
+    </div>
     <form id="geo-form">
       <label id="label-city">City:<input id="city" type="text" required="true"></label>
       <label id="label-state">State:<input id="state" type="text" required="true"></label>
-      <!-- <p class="form-text">OR</p> -->
-      <!-- <label id="label-zip">Zip:<input id="zip" type="number" min="00501" max="99999"></label> -->
       <button id="btn-submit" type="button">Submit</button>
     </form>
       
