@@ -7,8 +7,6 @@ const submitBtn = document.getElementById('btn-submit');
 let cityState = 'new+york,US-NY';
 const weatherOutput = document.getElementById('weather-output');
 
-// "api.openweathermap.org/data/2.5/weather?q=new+york,US-NY&appid=d2d96f2512c3f3f99ab4627f4c42e945";
-
 function transformLocationData() {
   let city = cityInput.value;
   city = city.replace(/\s/g, '+');
@@ -20,7 +18,6 @@ function transformLocationData() {
 }
 
 (async function getWeather() {
-  transformLocationData();
   const weatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityState}&appid=d2d96f2512c3f3f99ab4627f4c42e945`;
 
   let response = await fetch(weatherLink, { mode: 'cors' });
@@ -30,5 +27,6 @@ function transformLocationData() {
 })()
 
 submitBtn.addEventListener('click', () => {
+  transformLocationData();
   getWeather();
 })
