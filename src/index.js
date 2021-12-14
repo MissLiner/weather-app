@@ -36,14 +36,14 @@ const timeout = (prom, time) => {
 //   fetch(weatherLink, { mode: 'cors' });
 //   return 
 // }
-(async function fetchWeather() {
+async function fetchWeather() {
   const weatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityState}&units=imperial&appid=d2d96f2512c3f3f99ab4627f4c42e945`;
   const response = await fetch(weatherLink, { mode: 'cors' });
   let respJ = await response.json();
   console.log(respJ);
-})()
+}
 (function raceWeather() {
-  timeout(fetchWeather, 3000);
+  timeout(fetchWeather(), 3000);
 })()
 
 // (async function raceWeather() {
