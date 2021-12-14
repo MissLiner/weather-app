@@ -40,6 +40,9 @@ function createWeatherObj(obj, newObj) {
 }
 
 function displayWeather(obj) {
+  while (weatherOutput.firstChild) {
+    weatherOutput.removeChild(weatherOutput.firstChild);
+  }
   location.textContent = obj.City;
   for (const key in obj) {
     const newDiv = document.createElement('div');
@@ -56,11 +59,12 @@ async function fetchWeather() {
   displayWeather(currentWeather);
   console.log(respJ);
 }
-(function raceWeather() {
+function raceWeather() {
   timeout(fetchWeather(), 3000);
-})()
+}
+raceWeather();
 
 submitBtn.addEventListener('click', () => {
   transformLocationData();
-  getWeather();
+  raceWeather();
 })
