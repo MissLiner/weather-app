@@ -25,48 +25,40 @@ function errorHandler(err) {
 const timeout = (prom, time) => {
   let timer;
   Promise.race([prom, new Promise((resolve, reject) => timer = setTimeout(reject, time))])
-    //.then(() =>  console.log('In time!'))
-    .catch(() => console.log('Too long!'))
+    .then(() =>  console.log('In time!'))
+    .catch(() => errorHandler('Too long!'))
     .finally(() => clearTimeout(timer));
-  //setTimeout(errorHandler('Request timed out, try again'), 5000);
+}
+let currentWeather = {};
+
+function createWeatherObj(obj, newObj) {
+  newObj.City = obj.name;
+  newObj.Conditions = obj.weather[0].main;
+  newObj.Temp = obj.main.temp;
+  newObj.Humidity = '';
+  newObj.Wind = '';
 }
 
-// let getWeather = new Promise((resolve, reject) => {
-//   const weatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityState}&units=imperial&appid=d2d96f2512c3f3f99ab4627f4c42e945`;
-//   fetch(weatherLink, { mode: 'cors' });
-//   return 
-// }
+function displayWeather(obj) {
+  location.textContent = obj.City;
+  for (const key in obj) {
+    const newDiv = document.createElement('div');
+    weatherOutput.appendChild(newDiv);
+    newDiv.textContent = `${key}: ${obj[key]}`;
+  }
+}
+
 async function fetchWeather() {
   const weatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityState}&units=imperial&appid=d2d96f2512c3f3f99ab4627f4c42e945`;
   const response = await fetch(weatherLink, { mode: 'cors' });
   let respJ = await response.json();
+  createWeatherObj(respJ, currentWeather);
+  displayWeather(currentWeather);
   console.log(respJ);
 }
 (function raceWeather() {
   timeout(fetchWeather(), 3000);
 })()
-
-// (async function raceWeather() {
-//   const response = timeout(fetchWeather, 3000);
-//   console.log(fetchedObj);
-// })()
-
-// function createReport(object) {
-//   City = object.name,
-//   Conditions = object.description,
-//   Temp = object.temperature,
-//   Humidity = object.humidity,
-//   Wind = object.wind,
-// }
-
-// function createReport(loc, desc, temp, hum, wind) {
-//   location = loc;
-// }
-
-//city
-//temp
-//description
-//
 
 submitBtn.addEventListener('click', () => {
   transformLocationData();
