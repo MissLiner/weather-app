@@ -35,19 +35,35 @@ function createWeatherObj(obj, newObj) {
   newObj.City = obj.name;
   newObj.Conditions = obj.weather[0].main;
   newObj.Temp = obj.main.temp;
-  newObj.Humidity = '';
-  newObj.Wind = '';
+  newObj.Humidity = obj.main.humidity;
+  newObj.Wind = obj.wind.speed;
 }
 
 function displayWeather(obj) {
-  while (weatherOutput.firstChild) {
-    weatherOutput.removeChild(weatherOutput.firstChild);
+  const dataContainer = document.getElementById('data-container');
+  while (dataContainer.firstChild) {
+    dataContainer.removeChild(dataContainer.firstChild);
   }
-  location.textContent = obj.City;
+  // location.textContent = obj.City;
   for (const key in obj) {
-    const newDiv = document.createElement('div');
-    weatherOutput.appendChild(newDiv);
-    newDiv.textContent = `${key}: ${obj[key]}`;
+    // const newDiv = document.createElement('div');
+    // newDiv.classList.add('data-row');
+    // weatherOutput.appendChild(newDiv);
+    const keyDiv = document.createElement('div');
+    const dataDiv = document.createElement('div');
+    keyDiv.classList.add('data-key');
+    dataDiv.classList.add('data-info');
+    dataContainer.appendChild(keyDiv);
+    dataContainer.appendChild(dataDiv);
+    keyDiv.textContent = `${key}: `;
+    dataDiv.textContent = `${obj[key]}`;
+  }
+}
+
+function setImage(temp) {
+  const weatherPic = document.getElementById('weather-pic');
+  if (temp < 100) {
+    weatherPic.src = 'icicles.jpg';
   }
 }
 
@@ -57,6 +73,7 @@ async function fetchWeather() {
   let respJ = await response.json();
   createWeatherObj(respJ, currentWeather);
   displayWeather(currentWeather);
+  setImage(currentWeather.Temp);// get image link working
   console.log(respJ);
 }
 function raceWeather() {

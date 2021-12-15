@@ -9,6 +9,19 @@ label {
   display: block;
   margin: 10px 0px 10px 0px;
 }
+.data-key {
+  text-align: right;
+}
+.data-info {
+  text-align: left;
+}
+#data-container {
+  column-gap: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 10px;
+  /* width: 400px; */
+}
 #btn-submit {
   margin-top: 20px;
 }
