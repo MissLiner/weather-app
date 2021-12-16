@@ -62,8 +62,19 @@ function displayWeather(obj) {
 
 function setImage(temp) {
   const weatherPic = document.getElementById('weather-pic');
-  if (temp < 100) {
+  if (temp < 32) {
     weatherPic.src = 'icicles.jpg';
+  }
+  else if (temp < 48) {
+    weatherPic.src = 'brrr!-cold.jpg';
+  }
+  else if (temp < 65) {
+    weatherPic.src = 'chilly-weather.jpeg';
+  }
+  else if (temp < 85) {
+    weatherPic.src = 'just-right-temp.png';
+  } else {
+    weatherPic.src = 'too-hot.gif';
   }
 }
 
