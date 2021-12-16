@@ -44,22 +44,22 @@ function displayWeather(obj) {
   while (dataContainer.firstChild) {
     dataContainer.removeChild(dataContainer.firstChild);
   }
-  // location.textContent = obj.City;
   for (const key in obj) {
-    // const newDiv = document.createElement('div');
-    // newDiv.classList.add('data-row');
-    // weatherOutput.appendChild(newDiv);
-    const keyDiv = document.createElement('div');
-    const dataDiv = document.createElement('div');
-    keyDiv.classList.add('data-key');
-    dataDiv.classList.add('data-info');
-    dataContainer.appendChild(keyDiv);
-    dataContainer.appendChild(dataDiv);
-    keyDiv.textContent = `${key}: `;
-    dataDiv.textContent = `${obj[key]}`;
+    if (key === 'City') {
+      const cityName = document.getElementById('city-name');
+      cityName.textContent = `${obj[key]}`;
+    } else {
+      const keyDiv = document.createElement('div');
+      const dataDiv = document.createElement('div');
+      keyDiv.classList.add('data-key');
+      dataDiv.classList.add('data-info');
+      dataContainer.appendChild(keyDiv);
+      dataContainer.appendChild(dataDiv);
+      keyDiv.textContent = `${key}: `;
+      dataDiv.textContent = `${obj[key]}`;
+    }
   }
 }
-
 function setImage(temp) {
   const weatherPic = document.getElementById('weather-pic');
   if (temp < 32) {
@@ -84,7 +84,7 @@ async function fetchWeather() {
   let respJ = await response.json();
   createWeatherObj(respJ, currentWeather);
   displayWeather(currentWeather);
-  setImage(currentWeather.Temp);// get image link working
+  setImage(currentWeather.Temp);
   console.log(respJ);
 }
 function raceWeather() {

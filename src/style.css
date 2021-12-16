@@ -21,6 +21,10 @@ label {
   grid-template-columns: 1fr 1fr;
   row-gap: 10px;
 }
+#city-name {
+  font-size:x-large;
+  font-weight: bold;
+}
 #btn-submit {
   margin-top: 20px;
 }
